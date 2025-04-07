@@ -1,8 +1,7 @@
-package abc
+package geom
 
 import (
 	"arzeeq/geometry/internal/utils"
-	"fmt"
 	"math"
 )
 
@@ -38,7 +37,5 @@ func IsPointInsidePoligon(point Point2D, polygon Polygon) bool {
 			isInsideCnt++
 		}
 	}
-	// debugging
-	fmt.Printf("inside: %d, outside: %d\n", isInsideCnt, isOutsideCnt)
 	return isInsideCnt > isOutsideCnt
 }

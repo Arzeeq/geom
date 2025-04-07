@@ -1,4 +1,4 @@
-package abc
+package geom
 
 import (
 	"image/color"

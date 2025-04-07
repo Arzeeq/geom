@@ -1,4 +1,4 @@
-package abc
+package geom
 
 // Ray is a geometric shape that represents a set of points lying on a straiht line
 // from the beginning (begin Point2D), and to the infinity in the

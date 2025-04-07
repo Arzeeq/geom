@@ -1,4 +1,4 @@
-module arzeeq/geometry
+module github.oom/Arzeeq/c-geom
 
 go 1.23.1
 

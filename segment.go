@@ -1,4 +1,4 @@
-package abc
+package geom
 
 type Segment struct {
 	P1, P2 Point2D

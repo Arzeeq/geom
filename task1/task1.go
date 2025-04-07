@@ -1,43 +1,43 @@
 package main
 
 import (
-	"arzeeq/geometry/abc"
+	"arzeeq/geom/geom"
 	"math"
 )
 
 func main() {
-	A := abc.NewPoint2D(-1, 3)
-	B := abc.NewPoint2D(7, 4)
-	C := abc.NewPoint2D(1, -3)
-	triangle := abc.Polygon{A, B, C}
+	A := geom.NewPoint2D(-1, 3)
+	B := geom.NewPoint2D(7, 4)
+	C := geom.NewPoint2D(1, -3)
+	triangle := geom.Polygon{A, B, C}
 
 	// перенос на (5, 3)
-	Ta := abc.NewTransferTransform(5, 3)
+	Ta := geom.NewTransferTransform(5, 3)
 
 	// поворот на pi/4
-	R := abc.NewRotateTransform(math.Pi / 4)
+	R := geom.NewRotateTransform(math.Pi / 4)
 
 	// oceвая симметрия
-	S := abc.NewAxialSymetryTransform()
+	S := geom.NewAxialSymetryTransform()
 
 	// гомотетия
-	H := abc.NewHomothetyTransform(3, 3)
+	H := geom.NewHomothetyTransform(3, 3)
 
-	comp := abc.Composition(H, R)
+	comp := geom.Composition(H, R)
 
-	abc.DrawPolygonTransformation(triangle, Ta, "triangleTa.png")
-	abc.DrawPolygonTransformation(triangle, R, "triangleR.png")
-	abc.DrawPolygonTransformation(triangle, S, "triangleS.png")
-	abc.DrawPolygonTransformation(triangle, H, "triangleH.png")
-	abc.DrawPolygonTransformation(triangle, comp, "triangleCOMP.png")
+	geom.DrawPolygonTransformation(triangle, Ta, "triangleTa.png")
+	geom.DrawPolygonTransformation(triangle, R, "triangleR.png")
+	geom.DrawPolygonTransformation(triangle, S, "triangleS.png")
+	geom.DrawPolygonTransformation(triangle, H, "triangleH.png")
+	geom.DrawPolygonTransformation(triangle, comp, "triangleCOMP.png")
 
-	M := abc.NewPoint2D(1, 1)
-	N := abc.NewPoint2D(1, 4)
-	P := abc.NewPoint2D(4, 4)
-	Q := abc.NewPoint2D(4, 1)
-	square := abc.Polygon{M, N, P, Q}
-	sh := abc.NewShearTransform(4)
-	sh1 := abc.NewShearTransform(-4)
-	abc.DrawPolygonTransformation(square, sh, "square.png")
-	abc.DrawPolygonTransformation(sh.TransformPolygon(square), sh1, "square1.png")
+	M := geom.NewPoint2D(1, 1)
+	N := geom.NewPoint2D(1, 4)
+	P := geom.NewPoint2D(4, 4)
+	Q := geom.NewPoint2D(4, 1)
+	square := geom.Polygon{M, N, P, Q}
+	sh := geom.NewShearTransform(4)
+	sh1 := geom.NewShearTransform(-4)
+	geom.DrawPolygonTransformation(square, sh, "square.png")
+	geom.DrawPolygonTransformation(sh.TransformPolygon(square), sh1, "square1.png")
 }

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"arzeeq/geometry/abc"
+	"arzeeq/geometry/geom"
 
 	"github.com/fogleman/gg"
 )
@@ -18,11 +18,11 @@ func main() {
 
 	canvas.Translate(float64(width/2), float64(height/2))
 	canvas.Scale(1, -1)
-	abc.DrawAxis(canvas, width, height)
+	geom.DrawAxis(canvas, width, height)
 
-	//abc.DrawEllipse(a, b, canvas)
-	//abc.DrawHypocycloid(3*50, 5*50, canvas)
-	abc.DrawArhSpiral(10, 10, canvas)
+	//geom.DrawEllipse(a, b, canvas)
+	//geom.DrawHypocycloid(3*50, 5*50, canvas)
+	geom.DrawArhSpiral(10, 10, canvas)
 
 	//canvas.SavePNG("ellipse.png")
 	//canvas.SavePNG("hypocycloid.png")
