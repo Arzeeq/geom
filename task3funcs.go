@@ -2,7 +2,6 @@ package geom
 
 import (
 	"image"
-	"image/color"
 	"image/color/palette"
 	"image/draw"
 	"image/gif"
@@ -132,22 +131,22 @@ func BezierCurve(p []Point2D, n int, canvas *gg.Context) {
 	}
 }
 
-func DrawRadarGif() {
-	images := make([]image.Image, 0)
-	n := 100
-	t1 := 0.0
-	t2 := 2 * math.Pi
-	for i := range n {
-		canvas := NewCanvas(200, 200, true)
-		canvas.SetColor(color.RGBA{255, 0, 0, 255})
-		t := t1 + (t2-t1)*(float64(i)/float64(n))
-		p1 := NewPoint2D(0, 0)
-		p2 := NewPoint2D(70*math.Cos(t), 70*math.Sin(t))
-		DrawSegmentBresenham(p1, p2, canvas)
-		images = append(images, canvas.Image())
-	}
-	CreateGif(images)
-}
+// func DrawRadarGif() {
+// 	images := make([]image.Image, 0)
+// 	n := 100
+// 	t1 := 0.0
+// 	t2 := 2 * math.Pi
+// 	for i := range n {
+// 		canvas := NewCanvas(200, 200, 100, 10)
+// 		canvas.SetColor(color.RGBA{255, 0, 0, 255})
+// 		t := t1 + (t2-t1)*(float64(i)/float64(n))
+// 		p1 := NewPoint2D(0, 0)
+// 		p2 := NewPoint2D(70*math.Cos(t), 70*math.Sin(t))
+// 		DrawSegmentBresenham(p1, p2, canvas)
+// 		images = append(images, canvas.Image())
+// 	}
+// 	CreateGif(images)
+// }
 
 func CreateGif(images []image.Image) {
 

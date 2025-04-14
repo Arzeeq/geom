@@ -1,7 +1,7 @@
 package main
 
 import (
-	"arzeeq/geometry/geom"
+	"github.com/Arzeeq/geom"
 
 	"github.com/fogleman/gg"
 )

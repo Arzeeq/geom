@@ -1,10 +1,11 @@
 package main
 
 import (
-	"arzeeq/geometry/internal/utils"
-	"geom/geom"
 	"image/color"
 	"strconv"
+
+	"github.com/Arzeeq/geom"
+	"github.com/Arzeeq/geom/pkg/utils"
 )
 
 func main() {

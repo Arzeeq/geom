@@ -1,28 +1,39 @@
 package geom
 
-import "math"
+import (
+	"errors"
+	"math"
+)
 
-// Ax + By + C = 0
+var ErrLineCreation = errors.New("p1 and p2 must be different points")
+
+// Line is a geometric shape that represents a set of points
+// where every point satisfies equation Ax + By + C = 0
 type Line struct {
 	A, B, C float64
 }
 
-func NewLine(p1, p2 Point2D) Line {
-	dx := p1.X() - p2.X()
-	dy := p1.Y() - p2.Y()
-	if math.Abs(dx) < EPS && math.Abs(dy) < EPS {
-		panic("p1 and p2 must be different points")
+func NewLine(p1, p2 Point2D) (*Line, error) {
+	if IsEqualPoints(p1, p2) {
+		return nil, ErrLineCreation
 	}
 
+	dx := p1.X() - p2.X()
+	dy := p1.Y() - p2.Y()
+
 	if math.Abs(dy) < EPS {
-		return Line{A: 0, B: 1, C: -p1.Y()}
+		return &Line{A: 0, B: 1, C: -p1.Y()}, nil
 	}
 	var A float64 = 1
 	var B float64 = -A * dx / dy
 	var C float64 = -A*p1.X() - B*p1.Y()
-	return Line{A: A, B: B, C: C}
+	return &Line{A: A, B: B, C: C}, nil
 }
 
-func IsParallel(l1, l2 Line) bool {
+func IsParallel(l1, l2 *Line) bool {
 	return math.Abs(l1.A*l2.B-l2.A*l1.B) < EPS
+}
+
+func (l *Line) Contains(p Point2D) bool {
+	return math.Abs(l.A*p.X()+l.B*p.Y()+l.C) < EPS
 }

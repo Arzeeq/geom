@@ -1,8 +1,9 @@
 package main
 
 import (
-	"arzeeq/geometry/geom"
 	"image/color"
+
+	"github.com/Arzeeq/geom"
 )
 
 func main() {

@@ -26,9 +26,9 @@ func BuildConvexHull(points []Point2D) Polygon {
 
 	// sort points by their polar angle
 	sort.Slice(p, func(i, j int) bool {
-		vi := VectorFromPoints(convexHull[0], p[i])
-		vj := VectorFromPoints(convexHull[0], p[j])
-		return vi.X()/vi.Y() < vj.X()/vj.Y()
+		vi := NewVector2DFromPoints(convexHull[0], p[i])
+		vj := NewVector2DFromPoints(convexHull[0], p[j])
+		return vi.X/vi.Y < vj.X/vj.Y
 	})
 
 	// build convexHull
@@ -40,7 +40,7 @@ func BuildConvexHull(points []Point2D) Polygon {
 			}
 			p2 := convexHull[len(convexHull)-1]
 			p1 := convexHull[len(convexHull)-2]
-			sk, _ := SkewProduct(VectorFromPoints(p1, p2), VectorFromPoints(p2, p[i]))
+			sk := SkewProduct(NewVector2DFromPoints(p1, p2), NewVector2DFromPoints(p2, p[i]))
 
 			if sk <= 0 {
 				convexHull = append(convexHull, p[i])

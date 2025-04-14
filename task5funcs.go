@@ -1,8 +1,9 @@
 package geom
 
 import (
-	"arzeeq/geometry/internal/utils"
 	"math"
+
+	"github.com/Arzeeq/geom/pkg/utils"
 )
 
 // Polygon without self-intersections
