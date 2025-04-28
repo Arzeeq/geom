@@ -1,4 +1,6 @@
 # geom
+[![.github/workflows/main.yml](https://github.com/Arzeeq/geom/actions/workflows/main.yml/badge.svg)](https://github.com/Arzeeq/geom/actions/workflows/main.yml)
+## Description
 2D computational geometry written in pure Go.
 
 ## Functionality
