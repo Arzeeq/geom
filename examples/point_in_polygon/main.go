@@ -55,7 +55,9 @@ func main() {
 	canvas.SetColor(color.RGBA{255, 0, 0, 255})
 	canvas.Stroke()
 
-	canvas.SavePNG("point_in_rect.png")
+	if err := canvas.SavePNG("point_in_rect.png"); err != nil {
+		panic(err)
+	}
 }
 
 func genPoint(w, h, cage int, scale float64) geom.Point2D {

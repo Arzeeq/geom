@@ -56,7 +56,9 @@ func main() {
 		canvas.Stroke()
 	}
 
-	canvas.SavePNG("hull_intersect.png")
+	if err := canvas.SavePNG("hull_intersect.png"); err != nil {
+		panic(err)
+	}
 }
 
 func genPoint(x1, x2, y1, y2 float64) geom.Point2D {

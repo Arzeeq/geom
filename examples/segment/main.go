@@ -25,8 +25,7 @@ func bresenhamGif() {
 		images = append(images, canvas.Image())
 	}
 
-	err := geom.CreateGif(images, "bresenham.gif")
-	if err != nil {
+	if err := geom.CreateGif(images, "bresenham.gif"); err != nil {
 		panic(err)
 	}
 }
@@ -43,8 +42,7 @@ func simpleGif() {
 		images = append(images, canvas.Image())
 	}
 
-	err := geom.CreateGif(images, "simple.gif")
-	if err != nil {
+	if err := geom.CreateGif(images, "simple.gif"); err != nil {
 		panic(err)
 	}
 }

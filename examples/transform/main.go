@@ -23,7 +23,9 @@ func drawPolygonTransformation(p geom.Polygon, a geom.AffineTransform2D, filenam
 	canvas.DrawPolygon(a.TransformPolygon(p))
 	canvas.Stroke()
 
-	canvas.SavePNG(filename)
+	if err := canvas.SavePNG(filename); err != nil {
+		panic(err)
+	}
 }
 
 func triangleTransformations() {

@@ -36,7 +36,7 @@ func SegmentsIntersection(s1, s2 Segment) (Point2D, bool) {
 	}
 
 	m, isLinesIntersect := LinesIntersection(l1, l2)
-	var isSegmentsIntersect bool = IsPointInRect(m, s1.P1, s1.P2) && IsPointInRect(m, s2.P1, s2.P2)
+	isSegmentsIntersect := IsPointInRect(m, s1.P1, s1.P2) && IsPointInRect(m, s2.P1, s2.P2)
 
 	return m, isLinesIntersect && isSegmentsIntersect
 }

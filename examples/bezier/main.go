@@ -71,5 +71,8 @@ func spline() {
 
 	canvas.SetColor(color.RGBA{0, 0, 255, 255})
 	canvas.Stroke()
-	canvas.SavePNG("spline.png")
+	err := canvas.SavePNG("spline.png")
+	if err != nil {
+		panic(err)
+	}
 }

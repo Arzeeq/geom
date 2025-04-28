@@ -47,7 +47,9 @@ func drawDeloneTriangulation(d *voronoi.Diagram) {
 	canvas.SetColor(color.RGBA{0, 0, 255, 255})
 	canvas.Stroke()
 
-	canvas.SavePNG("delone.png")
+	if err := canvas.SavePNG("delone.png"); err != nil {
+		panic(err)
+	}
 }
 
 func drawVoronoiDiagram(d *voronoi.Diagram) {
@@ -62,5 +64,7 @@ func drawVoronoiDiagram(d *voronoi.Diagram) {
 	canvas.SetColor(color.RGBA{0, 0, 255, 255})
 	canvas.Stroke()
 
-	canvas.SavePNG("voronoi.png")
+	if err := canvas.SavePNG("voronoi.png"); err != nil {
+		panic(err)
+	}
 }

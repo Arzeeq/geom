@@ -34,7 +34,10 @@ func main() {
 	canvas.SetColor(color.RGBA{0, 255, 0, 255})
 	canvas.Stroke()
 
-	canvas.SavePNG("intersection.png")
+	if err := canvas.SavePNG("intersection.png"); err != nil {
+		panic(err)
+	}
+
 }
 
 func genPoint(w, h, cage int, scale float64) geom.Point2D {

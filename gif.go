@@ -5,6 +5,7 @@ import (
 	"image/color/palette"
 	"image/draw"
 	"image/gif"
+	"log"
 	"os"
 )
 
@@ -20,7 +21,11 @@ func CreateGif(images []image.Image, filename string) error {
 	}
 
 	f, _ := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE, 0600)
-	defer f.Close()
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Fatal("failed to close file")
+		}
+	}()
 	return gif.EncodeAll(f, &gif.GIF{
 		Image: imgs,
 		Delay: delays,

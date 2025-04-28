@@ -55,5 +55,7 @@ func main() {
 	// radius of curvature
 	fmt.Println(f.CurvatureRadius(t))
 
-	canvas.SavePNG("hypocycloid.png")
+	if err := canvas.SavePNG("hypocycloid.png"); err != nil {
+		panic(err)
+	}
 }

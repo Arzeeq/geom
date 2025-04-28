@@ -24,9 +24,10 @@ func NewLine(p1, p2 Point2D) (Line, error) {
 	if math.Abs(dy) < EPS {
 		return Line{A: 0, B: 1, C: -p1.Y()}, nil
 	}
-	var A float64 = 1
-	var B float64 = -A * dx / dy
-	var C float64 = -A*p1.X() - B*p1.Y()
+	var A, B, C float64
+	A = 1
+	B = -A * dx / dy
+	C = -A*p1.X() - B*p1.Y()
 
 	return Line{A: A, B: B, C: C}, nil
 }

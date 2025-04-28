@@ -37,7 +37,10 @@ func graham() {
 	canvas.DrawPolygon(hull)
 	canvas.SetColor(color.RGBA{0, 0, 0, 255})
 	canvas.Stroke()
-	canvas.SavePNG("graham.png")
+
+	if err := canvas.SavePNG("graham.png"); err != nil {
+		panic(err)
+	}
 }
 
 func jarvis() {
@@ -56,5 +59,8 @@ func jarvis() {
 	canvas.DrawPolygon(hull)
 	canvas.SetColor(color.RGBA{0, 0, 0, 255})
 	canvas.Stroke()
-	canvas.SavePNG("jarvis.png")
+	if err := canvas.SavePNG("jarvis.png"); err != nil {
+		panic(err)
+	}
+
 }

@@ -50,5 +50,7 @@ func main() {
 	// radius of curvature
 	fmt.Println(f.CurvatureRadius(t))
 
-	canvas.SavePNG("spiral.png")
+	if err := canvas.SavePNG("spiral.png"); err != nil {
+		panic(err)
+	}
 }

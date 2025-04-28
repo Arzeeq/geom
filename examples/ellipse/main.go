@@ -24,7 +24,10 @@ func main() {
 	f := geom.NewFunc(x, y, x1, y1, x2, y2)
 	drawEllipseApproximation(canvas, f)
 	drawEvolute(canvas, f)
-	canvas.SavePNG("ellipse.png")
+	err := canvas.SavePNG("ellipse.png")
+	if err != nil {
+		panic(err)
+	}
 }
 
 func drawEllipseApproximation(canvas *geom.Canvas, f geom.Func) {
