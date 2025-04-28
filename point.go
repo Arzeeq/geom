@@ -10,7 +10,7 @@ const (
 
 type Point2D [3]float64
 
-// Однородные координаты
+// homogeneous coordinates
 func NewPoint2D(x, y float64) Point2D {
 	return [3]float64{x, y, 1}
 }

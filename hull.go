@@ -1,10 +1,8 @@
 package geom
 
-import (
-	"sort"
-)
+import "sort"
 
-func BuildConvexHull(points []Point2D) Polygon {
+func ConvexHullGraham(points []Point2D) Polygon {
 	// define the index p0Idx of the lowest point
 	p := make([]Point2D, len(points))
 	copy(p, points)
@@ -52,4 +50,48 @@ func BuildConvexHull(points []Point2D) Polygon {
 	}
 
 	return convexHull
+}
+
+func ConvexHullJarvis(points []Point2D) Polygon {
+	n := len(points)
+	if n < 3 {
+		return nil
+	}
+
+	start := 0
+	for i := 1; i < n; i++ {
+		if points[i].X() < points[start].X() || (points[i].X() == points[start].X() && points[i].Y() < points[start].Y()) {
+			start = i
+		}
+	}
+
+	hull := Polygon{}
+	used := make([]bool, n)
+
+	p := start
+	for {
+		hull = append(hull, points[p])
+		used[p] = true
+		next := -1
+
+		for i := 0; i < n; i++ {
+			if next == -1 {
+				next = i
+				continue
+			}
+			v1 := NewVector2DFromPoints(points[p], points[next])
+			v2 := NewVector2DFromPoints(points[p], points[i])
+			sk := SkewProduct(v1, v2)
+			if sk < 0 || (sk == 0 && v2.Length() > v1.Length()) {
+				next = i
+			}
+		}
+
+		if next == start || next == -1 {
+			break
+		}
+		p = next
+	}
+
+	return hull
 }

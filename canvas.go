@@ -2,6 +2,7 @@ package geom
 
 import (
 	"log"
+	"strconv"
 
 	"github.com/fogleman/gg"
 	"github.com/golang/freetype/truetype"
@@ -12,7 +13,7 @@ type Canvas struct {
 	gg.Context
 	w, h  int     // pixels
 	cage  int     // pixels
-	scale float64 // len of 1 cage
+	scale float64 // scale of 1 cage
 }
 
 func NewCanvas(w, h, cage int, scale float64) *Canvas {
@@ -93,10 +94,21 @@ func NewCanvas(w, h, cage int, scale float64) *Canvas {
 	canvas.SetRGBA(0, 0, 0, 1)
 	canvas.DrawStringAnchored("X", float64(w)/2-1.5*float64(cage), float64(cage), 0.5, 0.5)
 	canvas.DrawStringAnchored("Y", -float64(cage), -(float64(h)/2 - 1.5*float64(cage)), 0.5, 0.5)
+	// sign scale X and Y
+	face = truetype.NewFace(font, &truetype.Options{Size: 14})
+	canvas.SetFontFace(face)
+	canvas.DrawStringAnchored(strconv.FormatFloat(scale, 'f', -1, 64), float64(cage), float64(cage)/2, 0.5, 0.5)
+	canvas.DrawStringAnchored(strconv.FormatFloat(scale, 'f', -1, 64), -float64(cage)/2, -float64(cage), 0.5, 0.5)
 	canvas.Scale(1, -1)
 
 	// scale coordinates
 	canvas.Scale(float64(cage)/scale, float64(cage)/scale)
 
 	return canvas
+}
+
+func (c *Canvas) SetPixel(x, y int) {
+	tx := c.w/2 + x
+	ty := c.h/2 - y
+	c.Context.SetPixel(tx, ty)
 }

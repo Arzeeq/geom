@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func LinesIntersection(l1, l2 *Line) (Point2D, bool) {
+func LinesIntersection(l1, l2 Line) (Point2D, bool) {
 	if IsParallel(l1, l2) {
 		return Point2D{}, false
 	}
@@ -22,7 +22,7 @@ func LinesIntersection(l1, l2 *Line) (Point2D, bool) {
 	return NewPoint2D(x, y), true
 }
 
-func IsLinesIntersect(l1, l2 *Line) bool {
+func IsLinesIntersect(l1, l2 Line) bool {
 	return !IsParallel(l1, l2)
 }
 
@@ -76,4 +76,43 @@ func IsRayIntersectSeg(r Ray, s Segment) bool {
 	isOnRay := scalarProduct > 0
 	isOnSegment := IsPointInRect(p, s.P1, s.P2)
 	return isOnRay && isOnSegment
+}
+
+func PolygonIntersection(p1, p2 Polygon) Polygon {
+	resultSet := make([]Point2D, 0)
+
+	for _, p := range p1 {
+		if p2.ContainsRayMethod(p) {
+			resultSet = append(resultSet, p)
+		}
+	}
+
+	for _, p := range p2 {
+		if p1.ContainsRayMethod(p) {
+			resultSet = append(resultSet, p)
+		}
+	}
+
+	for i := 0; i < len(p1); i++ {
+		var s1 Segment
+		if i == 0 {
+			s1 = NewSegment(p1[0], p1[len(p1)-1])
+		} else {
+			s1 = NewSegment(p1[i-1], p1[i])
+		}
+		for j := 0; j < len(p2); j++ {
+			var s2 Segment
+			if j == 0 {
+				s2 = NewSegment(p2[0], p2[len(p2)-1])
+			} else {
+				s2 = NewSegment(p2[j-1], p2[j])
+			}
+
+			if p, ok := SegmentsIntersection(s1, s2); ok {
+				resultSet = append(resultSet, p)
+			}
+		}
+	}
+
+	return ConvexHullGraham(resultSet)
 }

@@ -13,24 +13,32 @@ type Line struct {
 	A, B, C float64
 }
 
-func NewLine(p1, p2 Point2D) (*Line, error) {
+func NewLine(p1, p2 Point2D) (Line, error) {
 	if IsEqualPoints(p1, p2) {
-		return nil, ErrLineCreation
+		return Line{}, ErrLineCreation
 	}
 
 	dx := p1.X() - p2.X()
 	dy := p1.Y() - p2.Y()
 
 	if math.Abs(dy) < EPS {
-		return &Line{A: 0, B: 1, C: -p1.Y()}, nil
+		return Line{A: 0, B: 1, C: -p1.Y()}, nil
 	}
 	var A float64 = 1
 	var B float64 = -A * dx / dy
 	var C float64 = -A*p1.X() - B*p1.Y()
-	return &Line{A: A, B: B, C: C}, nil
+
+	return Line{A: A, B: B, C: C}, nil
 }
 
-func IsParallel(l1, l2 *Line) bool {
+func (l *Line) Norm() {
+	scale := math.Sqrt(l.A*l.A + l.B*l.B)
+	l.A /= scale
+	l.B /= scale
+	l.C /= scale
+}
+
+func IsParallel(l1, l2 Line) bool {
 	return math.Abs(l1.A*l2.B-l2.A*l1.B) < EPS
 }
 

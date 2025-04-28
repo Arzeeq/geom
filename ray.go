@@ -1,6 +1,8 @@
 package geom
 
-import "errors"
+import (
+	"errors"
+)
 
 // Ray is a geometric shape that represents a set of points lying on a straiht line
 // from the beginning (begin Point2D), and to the infinity in the
@@ -22,5 +24,8 @@ func (r *Ray) Contains(p Point2D) bool {
 		return IsEqualPoints(r.begin, p)
 	}
 
-	return l.Contains(p)
+	v1 := NewVector2DFromPoints(r.begin, r.direction)
+	v2 := NewVector2DFromPoints(r.begin, p)
+
+	return l.Contains(p) && ScalarProduct(v1, v2) > 0
 }

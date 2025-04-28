@@ -3,12 +3,12 @@ package geom
 import (
 	"testing"
 
-	"github.com/Arzeeq/geom/pkg/utils"
+	"github.com/Arzeeq/geom/pkg/gen"
 	"github.com/stretchr/testify/require"
 )
 
 func TestNewPoint2D(t *testing.T) {
-	x, y := utils.RandFloat64n(10), utils.RandFloat64n(10)
+	x, y := gen.RandFloat64n(10), gen.RandFloat64n(10)
 
 	p := NewPoint2D(x, y)
 
@@ -110,7 +110,7 @@ func TestIsPointInRectWithRandomPoints(t *testing.T) {
 	vertex2 := NewPoint2D(max, max)
 
 	for range n {
-		p := NewPoint2D(utils.RandFloat64Between(min, max), utils.RandFloat64Between(min, max))
+		p := NewPoint2D(gen.RandFloat64Between(min, max), gen.RandFloat64Between(min, max))
 		require.True(t, IsPointInRect(p, vertex1, vertex2))
 		require.True(t, IsPointInRect(p, vertex2, vertex1))
 	}
