@@ -24,7 +24,7 @@ func main() {
 	diagram := voronoi.ComputeDiagram(sites, bbox, true)
 
 	drawVoronoiDiagram(diagram)
-	drawDeloneTriangulation(diagram)
+	drawDelaunayTriangulation(diagram)
 }
 
 func genPoint(w, h, cage int, scale float64) (float64, float64) {
@@ -35,11 +35,11 @@ func genPoint(w, h, cage int, scale float64) (float64, float64) {
 	return x, y
 }
 
-func drawDeloneTriangulation(d *voronoi.Diagram) {
+func drawDelaunayTriangulation(d *voronoi.Diagram) {
 	w, h, cage, scale := 1000, 800, 20, 1.0
 	canvas := geom.NewCanvas(w, h, cage, scale)
 
-	canvas.DrawDelone(d)
+	canvas.DrawDelaunay(d)
 	canvas.SetColor(color.RGBA{0, 255, 0, 255})
 	canvas.Stroke()
 
@@ -47,7 +47,7 @@ func drawDeloneTriangulation(d *voronoi.Diagram) {
 	canvas.SetColor(color.RGBA{0, 0, 255, 255})
 	canvas.Stroke()
 
-	if err := canvas.SavePNG("delone.png"); err != nil {
+	if err := canvas.SavePNG("delaunay.png"); err != nil {
 		panic(err)
 	}
 }

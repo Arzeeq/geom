@@ -32,7 +32,10 @@ func quadraticBezier() {
 	canvas.SetColor(color.RGBA{255, 0, 0, 255})
 	canvas.Stroke()
 
-	canvas.SavePNG("bezier2.png")
+	if err := canvas.SavePNG("bezier2.png"); err != nil {
+		panic(err)
+	}
+
 }
 
 func qubicBezier() {
@@ -46,7 +49,9 @@ func qubicBezier() {
 	canvas.SetColor(color.RGBA{0, 0, 255, 255})
 	canvas.Stroke()
 
-	canvas.SavePNG("bezier3.png")
+	if err := canvas.SavePNG("bezier3.png"); err != nil {
+		panic(err)
+	}
 }
 
 func spline() {
@@ -71,8 +76,7 @@ func spline() {
 
 	canvas.SetColor(color.RGBA{0, 0, 255, 255})
 	canvas.Stroke()
-	err := canvas.SavePNG("spline.png")
-	if err != nil {
+	if err := canvas.SavePNG("spline.png"); err != nil {
 		panic(err)
 	}
 }

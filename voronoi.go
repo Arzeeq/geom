@@ -14,7 +14,7 @@ func (c *Canvas) DrawVoronoiPoints(d *voronoi.Diagram) {
 	}
 }
 
-func (c *Canvas) DrawDelone(d *voronoi.Diagram) {
+func (c *Canvas) DrawDelaunay(d *voronoi.Diagram) {
 	for _, cell := range d.Cells {
 		for _, halfedge := range cell.Halfedges {
 			edge := halfedge.Edge
